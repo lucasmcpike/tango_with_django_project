@@ -6,5 +6,5 @@ def index(request):
     context_dict = {'boldmessage': 'Crunchy, creamy, cookie, candy, cupcake!'}
     return render(request, 'rango/home.html', context_dict)
 def about(request):
-    context_dict = {'boldmessage': 'Rango says here is the about page.'}
+    context_dict = {'boldmessage': 'This tutorial has been put together by Lucas'}
     return render(request, 'rango/about.html', context_dict)
