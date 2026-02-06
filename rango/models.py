@@ -17,7 +17,9 @@ class Category (models.Model):
 
     def __str__(self):
         return self.name 
+
 class Page(models.Model):
+
     category = models.ForeignKey(Category,on_delete= models.CASCADE)
     title = models.CharField(max_length=128)
     url = models.URLField()
