@@ -1,12 +1,13 @@
 <html>
-<head> <title>Rango</title>
+<head> <title>Rango - {{category.name}}</title>
 </head>
 <body> 
-    <h2>
+ 
 
 
 
     
+
     <div>
     {% if category %}
         <h1>{{ category.name }}</h1> 
@@ -24,9 +25,8 @@
     {% endif %}
 
 </div> 
-</h2>
-<div>
-        <a href="/rango">Home</a><br />
+    <div>
+        <a href="{%url 'rango:index' %}">Home</a><br />
     </div>
 </body>
 </html>
