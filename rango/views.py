@@ -21,8 +21,10 @@ def index(request):
     context_dict['pages'] = page_list
     return render(request, 'rango/home.html', context_dict)
 def about(request):
-    context_dict = {'boldmessage': 'This tutorial has been put together by Lucas'}
-    return render(request, 'rango/about.html', context_dict)
+    print(request.method)
+    print(request.user)
+    return render (request , 'rango/about.html',{})
+
 def show_category (request,category_name_slug):
     
     context_dict ={}
@@ -57,7 +59,7 @@ def add_page(request,category_name_slug):
         category = None
     
     if category is None:
-        return redirect ('/rango/')
+        return redirect ('rango:index')
     
     form = PageForm()
 
