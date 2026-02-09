@@ -14,6 +14,7 @@
     {% if category %}
     <h1>{{ category.name}}</h1>
         {% if pages %}
+        <h2> The following are the pages assosiated with {{category.name}}   </h2>
             <ul>
                 {% for page in pages %}
                 <li><a href="{{ page.url }}">{{ page.title }}</a></li> 
