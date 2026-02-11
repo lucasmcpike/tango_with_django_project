@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import render ,redirect
 from django.http import HttpResponse
 from rango.models import Category, Page
@@ -18,10 +19,15 @@ def index(request):
     context_dict ['boldmessage'] = 'Crunchy, creamy, cookie, candy, cupcake!'
     context_dict ['categories'] = category_list
     context_dict['pages'] = page_list
-    return render(request, 'rango/home.html', context_dict)
+
+    response = render(request,'rango/index.html',context = context_dict)
+    visitor_cookie_handeler(request,response)
+    return response
 def about(request):
     print(request.method)
     print(request.user)
+    if request.session.test_cookie_worked():
+        print ("TEST COOKIE WORKED!")
     return render (request , 'rango/about.html',{})
 
 def show_category (request,category_name_slug):
@@ -138,3 +144,15 @@ def user_logout(request):
     logout(request)
 
     return redirect(reverse('rango:index'))
+def visitor_cookie_handeler(request,response):
+
+    visits = int(request.COOKIES.get('visits','1')) #min value of 1
+
+    last_visit_cookie = request.COOKIES.get('last_visit',str(datetime.now()))
+    last_visit_time = datetime.strptime(last_visit_cookie[:-7], '%Y-%m-%d %H:%M:%S')
+    
+    if (datetime.now() - last_visit_time).days> 0:
+        response.set_cookie('last_visit',str(datetime.now()))
+    else:
+        response.set_cookie('last_visit',last_visit_cookie)
+    response.set_cookie('visits',visits)
