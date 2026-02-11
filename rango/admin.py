@@ -1,5 +1,5 @@
 from django.contrib import admin
-from rango.models import Category, Page, User
+from rango.models import Category, Page, UserProfile
 
 # Define how you want the Page list to look
 class PageAdmin(admin.ModelAdmin):
@@ -11,4 +11,4 @@ class CategoryAdmin (admin.ModelAdmin):
 # Pass PageAdmin as the second argument here!
 admin.site.register(Page, PageAdmin)
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(User)
+admin.site.register(UserProfile)
