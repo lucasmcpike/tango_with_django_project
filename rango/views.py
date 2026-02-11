@@ -124,4 +124,4 @@ def user_login(request):
             print(f'Invalid login credentials for : {username} + {password}')
             return HttpResponse("Invalid login details supplied")
     else :
-        render(request, 'rango/login.html')
+         return render(request, 'rango/login.html')
